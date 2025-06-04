@@ -16,6 +16,7 @@ body {
   line-height: 1.6;
   color: #333;
   background-color: #f0f0f0;
+  min-height: 100vh;
 }
 
 img {
@@ -31,6 +32,76 @@ a {
   font: inherit;
 }
 
+.page-con {
+  min-height: 90vh;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
 a {
   text-decoration: none;
+}
+
+header {
+  position: fixed;
+  overflow: auto;
+  width: 100%;
+}
+.nav-con {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: hsl(31, 96%, 61%, 80%);
+  color: white;
+}
+
+.nav-logo {
+  border: solid rgb(255, 255, 255) 2px;
+  padding: 0px 6px;
+  border-radius: 7px;
+  background-color: hsl(15, 80%, 51%, 50%);
+  margin: 5px 20px;
+}
+.nav-logo a {
+  color: white;
+}
+
+.nav-ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  list-style-type: none;
+  margin-right: 40px;
+  text-align: center;
+}
+
+.nav-li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  margin: 0px 20px;
+  padding: 10px;
+  font-size: 17px;
+  font-weight: 500;
+}
+.nav-li a {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+.nav-li a:hover {
+  text-decoration: underline;
+  color: rgb(142, 142, 142);
+  transition: 0.2s ease-out;
+}
+
+footer {
+  line-height: 60px;
+  background-color: hsl(8, 85%, 59%, 80%);
+  height: 60px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  bottom: 100%;
 }
