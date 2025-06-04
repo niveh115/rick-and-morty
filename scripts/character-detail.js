@@ -16,6 +16,17 @@ function loadCharacterDetails(id) {
   // 5. Update UI with character and episode data
   // 6. Handle any errors
   // 7. Hide loading state
+
+  const CHAR_URL = "https://rickandmortyapi.com/api/character";
+  fetch(CHAR_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log("Error you mf", err);
+    });
+
   throw new Error("loadCharacterDetails not implemented");
 }
 
