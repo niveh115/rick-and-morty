@@ -32,9 +32,11 @@ function updateUI(location) {
   const container = document.querySelector(".location-detail");
   // 2. Create location header with basic info
   console.log(location);
-  container.innerHTML = `<p>${location.name}</p>
-          <p>${location.dimension}</p>
-          <p>${location.type}</p>`;
+  container.innerHTML = `<h2>Name: ${location.name}</h2>
+            <div class="flex-container">
+              <h3>Dimension:${location.dimension}</h3>
+              <h3>Type: ${location.type}</h3>
+            </div>`;
   // 3. Create residents section
   // 4. For each resident:
   //    - Create a card with image and basic info
