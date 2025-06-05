@@ -119,29 +119,41 @@ footer {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   gap: 1rem;
-
+  align-items: center;
+  justify-self: center;
   width: 90%;
   border-radius: 7px;
-  border: #333 solid 2px;
+  border: solid rgb(227, 110, 33, 0.8) 2px;
   height: auto;
   margin-top: 40px;
   padding: 20px;
+  background-color: rgba(218, 218, 218, 0.8);
 }
 
 .char-card {
   display: flex;
   flex-direction: column;
-  border: solid 2px black;
+  border: solid rgb(227, 110, 33, 0.8) 2px;
+  box-shadow: 0 0 10px black;
   gap: 20px;
   width: 100%;
   max-width: 250px;
   height: auto;
+  border-radius: 7px;
+  color: white;
+  overflow: hidden;
+}
+.char-card:hover {
+  scale: 1.05;
 }
 .char-card a {
   height: inherit;
 }
 .char-img {
   text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  overflow: hidden;
   background-color: hsla(0, 0%, 83%, 0.7);
 }
 .char-info {
@@ -155,7 +167,7 @@ footer {
 .details-con {
   width: 90%;
   height: auto;
-  border: solid black 2px;
+  border: solid rgb(227, 110, 33) 2px;
   border-radius: 7px;
   padding: 10px;
   margin-top: 30px;
