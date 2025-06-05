@@ -35,12 +35,20 @@ function updateUI(data) {
 function loadLocations() {
   // TODO: Implement location loading
   // 1. Show loading state
+  console.log("Loading list...");
   // 2. Fetch location data using the API module
+  const locationsData = fetch("https://rickandmortyapi.com/api/location")
+    .then((episodes) => episodes.json())
+    .then((data) => {
+      console.log(data.results);
+    })
+    .catch((error) => console.log("Error fetching."));
   // 3. Update UI with the results
   // 4. Handle any errors
   // 5. Hide loading state
   throw new Error("loadLocations not implemented");
 }
+loadLocations();
 
 // TODO: Add event listeners
 // 1. Previous page button click
