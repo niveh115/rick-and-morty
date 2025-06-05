@@ -131,8 +131,3 @@ footer {
   height: 250px;
   border-radius: 7px;
 }
-
-.location-card a:hover {
-  color: var(--primary-clr-400);
-  transition: all 300ms ease;
-}
