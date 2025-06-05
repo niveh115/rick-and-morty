@@ -32,14 +32,15 @@ function updateUI(data) {
 /**
  * Loads character data from the API
  */
-function loadCharacters() {
+function loadCharacters(Page = 1) {
   // TODO: Implement character loading
   // 1. Show loading state
   // 2. Fetch character data using the API module
   // 3. Update UI with the results
   // 4. Handle any errors
   // 5. Hide loading state
-  const CHAR_URL = "https://rickandmortyapi.com/api/character";
+
+  const CHAR_URL = `https://rickandmortyapi.com/api/character?page=${Page}`;
   fetch(CHAR_URL)
     .then((res) => res.json())
     .then((data) => {
@@ -66,11 +67,34 @@ function loadCharacters() {
     .catch((err) => {
       console.log("Error you mf", err);
     });
-  throw new Error("loadCharacters not implemented");
 }
 loadCharacters();
+
 // TODO: Add event listeners
 // 1. Previous page button click
 // 2. Next page button click
 // 3. Search input with debounce
 // 4. Call loadCharacters() on page load
+let Page = 1;
+const pageNumber = document.querySelector(".page-num");
+const next = document.querySelector(".next");
+const previous = document.querySelector(".previous");
+
+next.addEventListener("click", () => {
+  Page++;
+  pageNumber.innerHTML = `Page: ${Page}`;
+  loadCharacters(Page);
+  updatePaginationButtons();
+});
+
+previous.addEventListener("click", () => {
+  Page--;
+  pageNumber.innerHTML = `Page: ${Page}`;
+  loadCharacters(Page);
+  updatePaginationButtons();
+});
+
+function updatePaginationButtons() {
+  next.disabled = Page === 42;
+  previous.disabled = Page === 1;
+}

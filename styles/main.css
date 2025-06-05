@@ -136,7 +136,7 @@ footer {
   gap: 20px;
   width: 250px;
   max-width: 250px;
-  height: 430px;
+  height: 450px;
   border-radius: 7px;
   color: inherit;
   overflow: hidden;
@@ -161,6 +161,25 @@ footer {
   color: rgb(83, 83, 83);
   font-weight: bold;
   flex-grow: 1;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 30px;
+}
+button {
+  border-radius: 7px;
+  border: none;
+  background-color: orange;
+  padding: 6px;
+  cursor: pointer;
+  margin: 0 3px;
+
+  color: rgb(83, 83, 83);
+}
+.page-num {
 }
 
 /* ///// Charecters Details//// */
