@@ -34,25 +34,38 @@ function updateUI(data) {
  */
 const BASE_URL = "https://rickandmortyapi.com";
 function loadEpisodes() {
-  const url = new URLSearchParams(window.location.search);
-  const id = url.get("episodeId");
-  console.log(id);
-
-  fetch(`${BASE_URL}/api/episode/${id}`)
+  fetch(`${BASE_URL}/api/episode`)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("Episode not found");
+        throw new Error("Failed to load episodes");
       }
       return response.json();
     })
-    .then((episodeData) => {
-      console.log("Episode data:", episodeData);
+    .then((data) => {
+      const episodes = data.results;
+      const list = document.getElementById("episodeslist");
+
+      episodes.forEach((episode) => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+          <a href="episode-detail.html?episodeId=${episode.id}">
+            <strong>${episode.name}</strong><br>
+            <small>${episode.episode} — ${episode.air_date}</small>
+          </a>
+        `;
+
+        list.appendChild(li);
+      });
     })
     .catch((err) => {
-      console.log("Error loading episode:", err);
+      console.error("Error loading episodes:", err);
+      document.getElementById("episodeslist").innerHTML = `
+        <li>Could not load episodes. Please try again later.</li>
+      `;
     });
 }
-
+loadEpisodes();
 // TODO: Add event listeners
 // 1. Previous page button click
 // 2. Next page button click
