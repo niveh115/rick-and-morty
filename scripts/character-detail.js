@@ -37,7 +37,14 @@ function loadCharacterDetails(id) {
             <p>Status: ${char.status}</p>
             <p>Origin: ${char.origin.name}</p>
             <p>Created on: ${char.created}</p>
-            <p>Shown in: ${char.episode}</p>           
+            <p>Shown in: ${char.episode
+              .map(
+                (url) =>
+                  `<a href="episode-detail.html?episodeId=${url
+                    .split("/")
+                    .pop()}">${url.split("/").pop()}</a>`
+              )
+              .join(", ")}</p></p>           
           </div>
         </div>`;
     })
@@ -45,8 +52,6 @@ function loadCharacterDetails(id) {
     .catch((err) => {
       console.log("Error you mf", err);
     });
-
-  throw new Error("loadCharacterDetails not implemented");
 }
 loadCharacterDetails();
 /**
