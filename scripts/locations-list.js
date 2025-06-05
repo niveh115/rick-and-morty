@@ -42,13 +42,13 @@ function loadLocations() {
   fetch("https://rickandmortyapi.com/api/location")
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       const locationList = document.getElementById(ELEMENT_ID.locationsListId);
-      locationList.innerHTML = "";
+      // locationList.innerHTML = "";
       locationList.innerHTML = data.results
         .map(function (location) {
           const link = `location-detail.html?location=${location.id}`;
-          return `<li class="card">
+          return `<li class="location-card">
               <p><a href="${link}">${location.name}</a></p>
               <p>${location.type}</p>
               <p>${location.dimension}</p>
