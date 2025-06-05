@@ -68,3 +68,9 @@ loadEpisodes();
 // 2. Next page button click
 // 3. Search input with debounce
 // 4. Call loadEpisodes() on page load
+function pagination() {
+
+  document.createElement("button")
+  document.getElementById
+  
+}
