@@ -39,28 +39,28 @@ function loadLocations() {
   // 1. Show loading state
   console.log("Loading list...");
   // 2. Fetch location data using the API module
-  const locationsData = fetch("https://rickandmortyapi.com/api/location")
-    .then((episodes) => episodes.json())
+  fetch("https://rickandmortyapi.com/api/location")
+    .then((response) => response.json())
     .then((data) => {
-      console.log(data.results);
-    })
-    .catch((error) => console.log("Error fetching."));
-  // 3. Update UI with the results
-  const locationList = document.getElementById(ELEMENT_ID.locationsListId);
-  locationList.innerHTML = "";
-  locationList.innerHTML = locationsData
-    .map(function (location) {
-      const link = `location-detail.html?location=${location.url}`;
-      return `<li class="card">
-              <p>${results.name}</p>
-              <p>${results.type}</p>
-              <p>${results.dimension}</p>
+      console.log(data);
+      const locationList = document.getElementById(ELEMENT_ID.locationsListId);
+      locationList.innerHTML = "";
+      locationList.innerHTML = data.results
+        .map(function (location) {
+          const link = `location-detail.html?location=${location.id}`;
+          return `<li class="card">
+              <p><a href="${link}">${location.name}</a></p>
+              <p>${location.type}</p>
+              <p>${location.dimension}</p>
             </li>`;
+        })
+        .join("");
     })
-    .join("");
+    .catch((error) => console.log("Error fetching.", error));
+  // 3. Update UI with the results
+
   // 4. Handle any errors
   // 5. Hide loading state
-  throw new Error("loadLocations not implemented");
 }
 loadLocations();
 
