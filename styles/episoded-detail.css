@@ -1,9 +1,3 @@
-:root {
-  --primary-clr-300: hsl(31, 96%, 61%, 80%);
-  --primary-clr-500: hsl(15, 80%, 51%, 50%);
-  --primary-clr-400: hsl(8, 85%, 59%, 80%);
-  --neutral-clr-100: hsl(256, 15%, 34%);
-}
 * {
   margin: 0;
   padding: 0;
@@ -110,41 +104,50 @@ footer {
   position: relative;
   bottom: 100%;
 }
-.episodes-container {
-  margin-top: 1rem;
-  padding: 1rem;
-}
-
-#episodesList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.episode-card {
+.episode-detail-container {
+  background: #ffffff;
+  margin: 5rem auto 2rem;
+  padding: 2rem;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ccc;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background: hsl(31, 96%, 61%, 10%);
-  border: 3px double var(--primary-clr-300);
-  padding: 0.5rem;
-  border-radius: 5px;
-  gap: 0.25rem;
-  transition: all 0.5s ease-out;
+  gap: 1rem;
+  border: 2px solid hsl(31, 96%, 61%);
 }
 
-.episode-card:hover {
-  box-shadow: 0 0 10px var(--neutral-clr-100);
-  transition: all 0.5s ease-in;
+.episode-detail-container h2 {
+  font-size: 1.8rem;
+  color: #222;
 }
 
-.episode-card a {
-  color: var(--neutral-clr-100);
+.episode-detail-container p {
+  font-size: 1rem;
+  color: #444;
+}
+
+#ep-characters {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+#ep-characters h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+#ep-characters p {
+  padding: 0.4rem 0;
+  margin: 0;
+  border-bottom: 1px solid #eee;
   font-weight: 500;
-  text-decoration: none;
+  color: #222;
 }
 
-.episode-card a:hover {
-  color: var(--primary-clr-400);
-  transition: all 300ms ease;
+#ep-characters p:last-child {
+  border-bottom: none;
 }

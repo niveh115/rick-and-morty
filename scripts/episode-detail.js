@@ -7,25 +7,48 @@ document.addEventListener("DOMContentLoaded", loadEpisodeDetails);
 const BASE_URL = "https://rickandmortyapi.com";
 
 function loadEpisodeDetails() {
-  const url = new URLSearchParams(window.location.search);
-  const id = url.get("episodeId");
-  console.log(id);
+  const urlParams = new URLSearchParams(window.location.search);
+  const episodeId = urlParams.get("episodeId");
 
-  fetch(`${BASE_URL}/api/episode/${id}`)
+  if (!episodeId) {
+    console.error("No episodeId in URL.");
+    return;
+  }
+
+  fetch(`${BASE_URL}/api/episode/${episodeId}`)
     .then((response) => {
-      if (!response.ok) {
-        throw new Error("Episode not found");
-      }
+      if (!response.ok) throw new Error("Episode not found");
       return response.json();
     })
     .then((episodeData) => {
-      console.log("Episode data:", episodeData);
+      document.getElementById("ep-name").textContent = episodeData.name;
+      document.getElementById(
+        "ep-air-date"
+      ).textContent = `Air Date: ${episodeData.air_date}`;
+      document.getElementById(
+        "ep-code"
+      ).textContent = `Code: ${episodeData.episode}`;
+
+      // Optional: Load characters from this episode
+      const characterContainer = document.getElementById("ep-characters");
+      characterContainer.innerHTML = "<h3>Characters:</h3>";
+
+      episodeData.characters.forEach((url) => {
+        fetch(url)
+          .then((res) => res.json())
+          .then((character) => {
+            const charElem = document.createElement("p");
+            charElem.textContent = character.name;
+            characterContainer.appendChild(charElem);
+          });
+      });
     })
     .catch((err) => {
-      console.log("Error loading episode:", err);
+      console.error("Error loading episode:", err);
     });
 }
 
+loadEpisodeDetails();
 /**
  * Updates the UI with episode and character data
  * @param {Object} episode - The episode data

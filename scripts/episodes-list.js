@@ -32,39 +32,32 @@ function updateUI(data) {
 /**
  * Loads episode data from the API
  */
+
 const BASE_URL = "https://rickandmortyapi.com";
 
 function loadEpisodes() {
   fetch(`${BASE_URL}/api/episode`)
-    .then((response) => {
-      if (!response.ok) throw new Error("Failed to load episodes");
-      return response.json();
-    })
+    .then((res) => res.json())
     .then((data) => {
-      const episodes = data.results;
-      const container = document.getElementById("episodesList");
-      container.innerHTML = ""; // Clear it
+      const episodesList = document.getElementById("episodesList");
+      episodesList.innerHTML = ""; // Clear any existing content
 
-      episodes.forEach((episode) => {
-        const card = document.createElement("div");
-        card.className = "episode-card";
+      data.results.forEach((episode) => {
+        const li = document.createElement("li");
+        li.classList.add("episode-card");
 
-        card.innerHTML = `
-          <a href="episode-detail.html?episodeId=${episode.id}">
-            <h3>${episode.name}</h3>
-            <p><strong>${episode.episode}</strong></p>
-            <p>${episode.air_date}</p>
-          </a>
+        li.innerHTML = `
+          <h3>${episode.name}</h3>
+          <p><strong>Air Date:</strong> ${episode.air_date}</p>
+          <p><strong>Code:</strong> ${episode.episode}</p>
+          <a href="episode-detail.html?episodeId=${episode.id}">View Details</a>
         `;
 
-        container.appendChild(card);
+        episodesList.appendChild(li);
       });
     })
     .catch((err) => {
       console.error("Error loading episodes:", err);
-      document.getElementById("episodesList").innerHTML = `
-        <p>Could not load episodes. Please try again later.</p>
-      `;
     });
 }
 
