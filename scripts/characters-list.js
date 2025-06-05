@@ -45,11 +45,12 @@ function loadCharacters() {
     .then((data) => {
       console.log(data.results);
       const charCon = document.querySelector(".char-con");
-      // const charDetailsLink =
+
       let charStr = "";
       data.results.forEach((char) => {
         charStr += `<div class="char-card"><a href="/pages/character-detail.html?id=${char.id}">
-        <div class="char-img"><img src="${char.image}"></div>
+        <div class="char-img">
+        <img src="${char.image}"></div>
           <div class="char-info">
             <p>Name: ${char.name}</p>
             <p>Gender: ${char.gender}</p> 
