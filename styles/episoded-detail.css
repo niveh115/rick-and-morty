@@ -180,3 +180,29 @@ footer {
   font-size: 1rem;
   margin-bottom: 4px;
 }
+#pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+#pagination-controls button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  background-color: #007acc;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#pagination-controls button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+#page-number {
+  font-weight: bold;
+}

@@ -33,15 +33,20 @@ function updateUI(data) {
  * Loads episode data from the API
  */
 
-const BASE_URL = "https://rickandmortyapi.com";
+const BASE_URL = "https://rickandmortyapi.com"; 
+
+let currentPage =
+  parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
+let totalPages = 1;
 
 function loadEpisodes() {
-  const page = new URLSearchParams(window.location.search).get("page");
-  fetch(`${BASE_URL}/api/episode?page=${page}`)
+  fetch(`${BASE_URL}/api/episode?page=${currentPage}`)
     .then((res) => res.json())
     .then((data) => {
       const episodesList = document.getElementById("episodesList");
       episodesList.innerHTML = "";
+
+      totalPages = data.info.pages;
 
       data.results.forEach((episode) => {
         const li = document.createElement("li");
@@ -56,21 +61,34 @@ function loadEpisodes() {
 
         episodesList.appendChild(li);
       });
+      pagination();
     })
     .catch((err) => {
       console.error("Error loading episodes:", err);
     });
 }
 
-loadEpisodes();
-// TODO: Add event listeners
-// 1. Previous page button click
-// 2. Next page button click
-// 3. Search input with debounce
-// 4. Call loadEpisodes() on page load
 function pagination() {
+  document.getElementById("page-number").textContent = `Page ${currentPage}`;
+  document.getElementById("prev-btn").disabled = currentPage === 1;
+  document.getElementById("next-btn").disabled = currentPage === totalPages;
 
-  document.createElement("button")
-  document.getElementById
-  
+  const newUrl = `${window.location.pathname}?page=${currentPage}`;
+  history.pushState(null, "", newUrl);
 }
+
+document.getElementById("prev-btn").addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    loadEpisodes();
+  }
+});
+
+document.getElementById("next-btn").addEventListener("click", () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    loadEpisodes();
+  }
+});
+
+loadEpisodes();
