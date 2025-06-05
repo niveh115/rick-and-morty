@@ -40,17 +40,23 @@ function updateUI(location, residents) {
   // TODO: Implement the UI update
   // 1. Get the detail container element
   const container = document.querySelector(".location-detail");
+  const residentList = document.querySelector(".residents-list");
   // 2. Create location header with basic info
   container.innerHTML = `<h2>Name: ${location.name}</h2>
             <div class="flex-container">
               <h3>Dimension: ${location.dimension}</h3>
               <h3>Type: ${location.type}</h3>
             </div>`;
-  // 3. Create residents section
-  // 4. For each resident:
-  //    - Create a card with image and basic info
-  //    - Make the card link to the character detail page
-  // 5. Handle empty states (no residents)
+  residentList.innerHTML = residents
+    .map(function (resident) {
+      const link = `character-detail.html?characterId=${resident.id}`;
+      return ` <li class="resident-item">
+              <div class="img-container"><a href="${link}"><img src="https://rickandmortyapi.com/api/character/avatar/${resident.id}.jpeg" alt="${resident.name}"></a></div>
+              <p>${resident.name}</p>
+              <p>Origin: ${resident.origin.name}</p>
+            </li>`;
+    })
+    .join("");
 }
 loadLocationDetails();
 
