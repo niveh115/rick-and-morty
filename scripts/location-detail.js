@@ -6,13 +6,26 @@ function loadLocationDetails() {
   // TODO: Implement location detail loading
   // 1. Show loading state
   const urlParams = new URLSearchParams(window.location.search);
-  const locId = urlParams.get("locationId");
+  const locId = urlParams.get("locationId") || "1";
   console.log("Loading...");
   // 2. Fetch location data using the API module
   fetch(`https://rickandmortyapi.com/api/location/${locId}`)
     .then((response) => response.json())
     .then((location) => {
+      const residentPromises = location.residents.map((url) => {
+        return fetch(url).then((response) => response.json());
+      });
+
+      return Promise.all([
+        Promise.resolve(location),
+        Promise.all(residentPromises),
+      ]);
+
+      console.log(residentPromises);
       updateUI(location);
+    })
+    .then(([location, residents]) => {
+      updateUI(location, residents);
     });
   // 3. Extract resident IDs from location.residents URLs
   // 4. Fetch all residents of this location
@@ -26,15 +39,14 @@ function loadLocationDetails() {
  * @param {Object} location - The location data
  * @param {Array} residents - Array of resident data
  */
-function updateUI(location) {
+function updateUI(location, residents) {
   // TODO: Implement the UI update
   // 1. Get the detail container element
   const container = document.querySelector(".location-detail");
   // 2. Create location header with basic info
-  console.log(location);
   container.innerHTML = `<h2>Name: ${location.name}</h2>
             <div class="flex-container">
-              <h3>Dimension:${location.dimension}</h3>
+              <h3>Dimension: ${location.dimension}</h3>
               <h3>Type: ${location.type}</h3>
             </div>`;
   // 3. Create residents section
