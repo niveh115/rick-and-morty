@@ -49,11 +49,11 @@ function updateUI(location, residents) {
             </div>`;
   residentList.innerHTML = residents
     .map(function (resident) {
-      const link = `character-detail.html?characterId=${resident.id}`;
+      const link = `character-detail.html?id=${resident.id}`;
       return ` <li class="resident-item">
               <div class="img-container"><a href="${link}"><img src="https://rickandmortyapi.com/api/character/avatar/${resident.id}.jpeg" alt="${resident.name}"></a></div>
-              <p>${resident.name}</p>
-              <p>Origin: ${resident.origin.name}</p>
+              <div class="text-container"><p>${resident.name}</p>
+              <p class="origin">Origin: ${resident.origin.name}</p></div>
             </li>`;
     })
     .join("");
