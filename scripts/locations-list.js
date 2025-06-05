@@ -47,7 +47,7 @@ function loadLocations() {
       // locationList.innerHTML = "";
       locationList.innerHTML = data.results
         .map(function (location) {
-          const link = `location-detail.html?location=${location.id}`;
+          const link = `location-detail.html?locationId=${location.id}`;
           return `<li class="location-card">
               <p><a href="${link}">${location.name}</a></p>
               <p>${location.type}</p>

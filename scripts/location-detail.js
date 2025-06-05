@@ -2,17 +2,18 @@
  * Location Detail Page Script
  * Handles the display of detailed information for a single location
  */
-
-/**
- * Loads and displays details for a specific location
- * @param {string} id - The location ID to load
- */
-function loadLocationDetails(id) {
+function loadLocationDetails() {
   // TODO: Implement location detail loading
   // 1. Show loading state
+  const urlParams = new URLSearchParams(window.location.search);
+  const locId = urlParams.get("locationId");
   console.log("Loading...");
   // 2. Fetch location data using the API module
-  fetch();
+  fetch(`https://rickandmortyapi.com/api/location/${locId}`)
+    .then((response) => response.json())
+    .then((location) => {
+      updateUI(location);
+    });
   // 3. Extract resident IDs from location.residents URLs
   // 4. Fetch all residents of this location
   // 5. Update UI with location and resident data
@@ -25,10 +26,12 @@ function loadLocationDetails(id) {
  * @param {Object} location - The location data
  * @param {Array} residents - Array of resident data
  */
-function updateUI(location, residents) {
+function updateUI(location) {
   // TODO: Implement the UI update
   // 1. Get the detail container element
+  const container = document.querySelector("location-detail");
   // 2. Create location header with basic info
+  container.innerHTML = location;
   // 3. Create residents section
   // 4. For each resident:
   //    - Create a card with image and basic info
