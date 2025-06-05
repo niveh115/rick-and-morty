@@ -10,13 +10,14 @@
 function loadLocationDetails(id) {
   // TODO: Implement location detail loading
   // 1. Show loading state
+  console.log("Loading...");
   // 2. Fetch location data using the API module
+  fetch();
   // 3. Extract resident IDs from location.residents URLs
   // 4. Fetch all residents of this location
   // 5. Update UI with location and resident data
   // 6. Handle any errors
   // 7. Hide loading state
-  throw new Error("loadLocationDetails not implemented");
 }
 
 /**
@@ -33,8 +34,8 @@ function updateUI(location, residents) {
   //    - Create a card with image and basic info
   //    - Make the card link to the character detail page
   // 5. Handle empty states (no residents)
-  throw new Error("updateUI not implemented");
 }
+loadLocationDetails();
 
 // TODO: Initialize the page
 // 1. Get location ID from URL parameters
