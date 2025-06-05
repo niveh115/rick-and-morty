@@ -68,6 +68,7 @@ header {
   justify-content: space-between;
   align-items: center;
   background-color: hsl(31, 96%, 61%, 80%);
+  backdrop-filter: blur(10px);
   color: white;
 }
 
@@ -207,7 +208,7 @@ footer {
 .residents-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .resident-item {
@@ -219,6 +220,11 @@ footer {
   box-shadow: 0 0 10px 0 black;
   border-radius: 5px;
   overflow: hidden;
+  transition: all 0.3s ease;
+}
+.resident-item:hover {
+  scale: 1.1;
+  transition: all 0.3s ease;
 }
 .text-container {
   padding: 1rem;
