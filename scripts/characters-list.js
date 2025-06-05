@@ -26,22 +26,6 @@ function updateUI(data) {
   //    - Make the card clickable (link to character-detail.html)
   // 4. Update pagination UI
 
-  const CHAR_URL = "https://rickandmortyapi.com/api/character";
-  fetch(CHAR_URL)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log("Error you mf", err);
-    });
-
-  const char = document.querySelector(".char-con");
-  data.forEach((id) => {
-    if (!id) {
-    }
-  });
-
   throw new Error("updateUI not implemented");
 }
 
@@ -55,9 +39,35 @@ function loadCharacters() {
   // 3. Update UI with the results
   // 4. Handle any errors
   // 5. Hide loading state
+  const CHAR_URL = "https://rickandmortyapi.com/api/character";
+  fetch(CHAR_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.results);
+      const charCon = document.querySelector(".char-con");
+      // const charDetailsLink =
+      let charStr = "";
+      data.results.forEach((char) => {
+        charStr += `<div class="char-card"><a href="/pages/character-detail.html?id=${char.id}">
+        <div class="char-img"><img src="${char.image}"></div>
+          <div class="char-info">
+            <p>Name: ${char.name}</p>
+            <p>Gender: ${char.gender}</p> 
+            <p>Specie: ${char.species}</p>
+            <p>Status: ${char.status}</p>
+            <p>Location: ${char.location.name}</p>
+          </div>
+          </a></div>
+          `;
+      });
+      charCon.innerHTML = charStr;
+    })
+    .catch((err) => {
+      console.log("Error you mf", err);
+    });
   throw new Error("loadCharacters not implemented");
 }
-
+loadCharacters();
 // TODO: Add event listeners
 // 1. Previous page button click
 // 2. Next page button click

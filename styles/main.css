@@ -126,8 +126,18 @@ footer {
 }
 
 .char-card {
-  background-color: rgb(190, 190, 190, 90);
-  
-  height: 250px;
-  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px black;
+  margin: 20px;
+}
+.char-img {
+  text-align: center;
+  background-color: hsla(0, 0%, 83%, 0.7);
+}
+.char-info {
+  text-align: center;
+  background-color: hsla(0, 0%, 83%, 0.7);
 }
