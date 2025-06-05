@@ -119,6 +119,7 @@ footer {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   gap: 1rem;
+
   width: 90%;
   border-radius: 7px;
   border: #333 solid 2px;
@@ -130,15 +131,15 @@ footer {
 .char-card {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
   border: solid 2px black;
   gap: 20px;
   width: 100%;
   max-width: 250px;
   height: auto;
 }
-
+.char-card a {
+  height: inherit;
+}
 .char-img {
   text-align: center;
   background-color: hsla(0, 0%, 83%, 0.7);
@@ -147,4 +148,19 @@ footer {
   text-align: center;
   background-color: hsla(0, 0%, 83%, 0.7);
   padding: 10px;
+}
+
+/* ///// Charecters Details//// */
+
+.details-con {
+  width: 90%;
+  height: auto;
+  border: solid black 2px;
+  border-radius: 7px;
+  padding: 10px;
+  margin-top: 30px;
+}
+.char-details-card {
+  display: flex;
+  flex-direction: column;
 }

@@ -48,7 +48,7 @@ function loadCharacters() {
 
       let charStr = "";
       data.results.forEach((char) => {
-        charStr += `<div class="char-card"><a href="/pages/character-detail.html?id=${char.id}">
+        charStr += `<div class="char-card"><a href="/pages/character-detail.html?charId=${char.id}">
         <div class="char-img">
         <img src="${char.image}"></div>
           <div class="char-info">

@@ -7,6 +7,7 @@
  * Loads and displays details for a specific character
  * @param {string} id - The character ID to load
  */
+
 function loadCharacterDetails(id) {
   // TODO: Implement character detail loading
   // 1. Show loading state
@@ -16,13 +17,31 @@ function loadCharacterDetails(id) {
   // 5. Update UI with character and episode data
   // 6. Handle any errors
   // 7. Hide loading state
-
-  const CHAR_URL = "https://rickandmortyapi.com/api/character";
-  fetch(CHAR_URL)
+  const params = new URLSearchParams(window.location.search);
+  const charId = params.get("charId");
+  const CHAR_ID_URL = `https://rickandmortyapi.com/api/character/${charId}`;
+  fetch(CHAR_ID_URL)
     .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
+    .then((char) => {
+      console.log(char.id);
+
+      const charDetailsCon = document.querySelector(".details-con");
+
+      charDetailsCon.innerHTML = ` <div class="char-details-card">
+          <div class="img"><img src="${char.image}" /></div>
+          <div class="info">
+            <p>Name: ${char.name}</p>
+            <p>Gender: ${char.gender}</p>
+            <p>Location: ${char.location.name}</p>
+            <p>Specie: ${char.species}</p>
+            <p>Status: ${char.status}</p>
+            <p>Origin: ${char.origin.name}</p>
+            <p>Created on: ${char.created}</p>
+            <p>Shown in: ${char.episode}</p>           
+          </div>
+        </div>`;
     })
+
     .catch((err) => {
       console.log("Error you mf", err);
     });
