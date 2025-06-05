@@ -1,22 +1,29 @@
+document.addEventListener("DOMContentLoaded", loadEpisodeDetails);
+
 /**
  * Episode Detail Page Script
  * Handles the display of detailed information for a single episode
  */
+const BASE_URL = "https://rickandmortyapi.com";
 
-/**
- * Loads and displays details for a specific episode
- * @param {string} id - The episode ID to load
- */
-function loadEpisodeDetails(id) {
-  // TODO: Implement episode detail loading
-  // 1. Show loading state
-  // 2. Fetch episode data using the API module
-  // 3. Extract character IDs from episode.characters URLs
-  // 4. Fetch all characters that appear in this episode
-  // 5. Update UI with episode and character data
-  // 6. Handle any errors
-  // 7. Hide loading state
-  throw new Error("loadEpisodeDetails not implemented");
+function loadEpisodeDetails() {
+  const url = new URLSearchParams(window.location.search);
+  const id = url.get("episodeId");
+  console.log(id);
+
+  fetch(`${BASE_URL}/api/episode/${id}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Episode not found");
+      }
+      return response.json();
+    })
+    .then((episodeData) => {
+      console.log("Episode data:", episodeData);
+    })
+    .catch((err) => {
+      console.log("Error loading episode:", err);
+    });
 }
 
 /**

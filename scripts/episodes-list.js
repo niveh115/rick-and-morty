@@ -32,14 +32,25 @@ function updateUI(data) {
 /**
  * Loads episode data from the API
  */
+const BASE_URL = "https://rickandmortyapi.com";
 function loadEpisodes() {
-  // TODO: Implement episode loading
-  // 1. Show loading state
-  // 2. Fetch episode data using the API module
-  // 3. Update UI with the results
-  // 4. Handle any errors
-  // 5. Hide loading state
-  throw new Error("loadEpisodes not implemented");
+  const url = new URLSearchParams(window.location.search);
+  const id = url.get("episodeId");
+  console.log(id);
+
+  fetch(`${BASE_URL}/api/episode/${id}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Episode not found");
+      }
+      return response.json();
+    })
+    .then((episodeData) => {
+      console.log("Episode data:", episodeData);
+    })
+    .catch((err) => {
+      console.log("Error loading episode:", err);
+    });
 }
 
 // TODO: Add event listeners
