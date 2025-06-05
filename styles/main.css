@@ -105,3 +105,29 @@ footer {
   position: relative;
   bottom: 100%;
 }
+
+/* ///// characters page */
+.main-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 60px;
+}
+.char-con {
+  display: grid;
+  grid-template-columns: 1fr, 1fr, 1fr, 1fr, 1fr;
+  grid-template-rows: auto;
+  width: 90%;
+  border-radius: 7px;
+  border: #333 solid 2px;
+  height: auto;
+  margin-top: 40px;
+}
+
+.char-card {
+  background-color: rgb(190, 190, 190, 90);
+  /* width: 100px; */
+  height: 250px;
+  border-radius: 7px;
+}

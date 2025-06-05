@@ -25,6 +25,23 @@ function updateUI(data) {
   //    - Add character image, name, status, species, location
   //    - Make the card clickable (link to character-detail.html)
   // 4. Update pagination UI
+
+  const CHAR_URL = "https://rickandmortyapi.com/api/character";
+  fetch(CHAR_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log("Error you mf", err);
+    });
+
+  const char = document.querySelector(".char-con");
+  data.forEach((id) => {
+    if (!id) {
+    }
+  });
+
   throw new Error("updateUI not implemented");
 }
 

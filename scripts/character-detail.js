@@ -29,7 +29,7 @@ function loadCharacterDetails(id) {
 
   throw new Error("loadCharacterDetails not implemented");
 }
-
+loadCharacterDetails();
 /**
  * Updates the UI with character and episode data
  * @param {Object} character - The character data
