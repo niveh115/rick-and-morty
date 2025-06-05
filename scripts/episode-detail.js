@@ -38,10 +38,12 @@ function loadEpisodeDetails() {
             const charDiv = document.createElement("div");
             charDiv.classList.add("character-card");
             charDiv.innerHTML = `
-              <img src="${character.image}" alt="${character.name}" />
-              <h4>${character.name}</h4>
-              <p>Status: ${character.status}</p>
-              <p>Species: ${character.species}</p>
+  <a href="character-detail.html?charId=${character.id}" >
+                <img src="${character.image}" alt="${character.name}" />
+                <h4>${character.name}</h4>
+                <p>Status: ${character.status}</p>
+                <p>Species: ${character.species}</p>
+              </a>
             `;
             characterContainer.appendChild(charDiv);
           });
