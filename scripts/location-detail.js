@@ -20,9 +20,6 @@ function loadLocationDetails() {
         Promise.resolve(location),
         Promise.all(residentPromises),
       ]);
-
-      console.log(residentPromises);
-      updateUI(location);
     })
     .then(([location, residents]) => {
       updateUI(location, residents);
