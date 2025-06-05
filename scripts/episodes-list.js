@@ -36,11 +36,12 @@ function updateUI(data) {
 const BASE_URL = "https://rickandmortyapi.com";
 
 function loadEpisodes() {
-  fetch(`${BASE_URL}/api/episode`)
+  const page = new URLSearchParams(window.location.search).get("page");
+  fetch(`${BASE_URL}/api/episode?page=${page}`)
     .then((res) => res.json())
     .then((data) => {
       const episodesList = document.getElementById("episodesList");
-      episodesList.innerHTML = ""; // Clear any existing content
+      episodesList.innerHTML = "";
 
       data.results.forEach((episode) => {
         const li = document.createElement("li");

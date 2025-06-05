@@ -29,7 +29,7 @@ function loadEpisodeDetails() {
         "ep-code"
       ).textContent = `Code: ${episodeData.episode}`;
 
-      // Optional: Load characters from this episode
+     
       const characterContainer = document.getElementById("ep-characters");
       characterContainer.innerHTML = "<h3>Characters:</h3>";
 
