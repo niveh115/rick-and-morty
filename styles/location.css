@@ -154,3 +154,15 @@ footer {
 }
 
 /* Location detail styles */
+.location-detail-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.location-detail-container {
+  display: grid;
+  place-content: center;
+}
+.location-detail {
+}

@@ -29,9 +29,12 @@ function loadLocationDetails() {
 function updateUI(location) {
   // TODO: Implement the UI update
   // 1. Get the detail container element
-  const container = document.querySelector("location-detail");
+  const container = document.querySelector(".location-detail");
   // 2. Create location header with basic info
-  container.innerHTML = location;
+  console.log(location);
+  container.innerHTML = `<p>${location.name}</p>
+          <p>${location.dimension}</p>
+          <p>${location.type}</p>`;
   // 3. Create residents section
   // 4. For each resident:
   //    - Create a card with image and basic info
