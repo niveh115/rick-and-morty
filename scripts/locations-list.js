@@ -1,3 +1,5 @@
+import { ELEMENT_ID } from "./constants.js";
+
 /**
  * Locations Page Script
  * Handles the display and interaction of the locations list page
@@ -44,6 +46,18 @@ function loadLocations() {
     })
     .catch((error) => console.log("Error fetching."));
   // 3. Update UI with the results
+  const locationList = document.getElementById(ELEMENT_ID.locationsListId);
+  locationList.innerHTML = "";
+  locationList.innerHTML = locationsData
+    .map(function (location) {
+      const link = `location-detail.html?location=${location.url}`;
+      return `<li class="card">
+              <p>${results.name}</p>
+              <p>${results.type}</p>
+              <p>${results.dimension}</p>
+            </li>`;
+    })
+    .join("");
   // 4. Handle any errors
   // 5. Hide loading state
   throw new Error("loadLocations not implemented");
