@@ -148,3 +148,26 @@ footer {
   color: var(--primary-clr-400);
   transition: all 300ms ease;
 }
+
+#pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+#prev-btn {
+  border: none;
+  background: var(--primary-clr-300);
+  color: white;
+  padding: 0 1rem;
+  border-radius: 5px;
+}
+#next-btn {
+  border: none;
+  background: var(--primary-clr-300);
+  color: white;
+  padding: 0 1rem;
+  border-radius: 5px;
+}
