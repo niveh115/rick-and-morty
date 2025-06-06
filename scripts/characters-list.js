@@ -53,11 +53,11 @@ function loadCharacters(Page = 1) {
         <div class="char-img">
         <img src="${char.image}"></div>
           <div class="char-info">
-            <p>Name: ${char.name}</p>
-            <p>Gender: ${char.gender}</p> 
-            <p>Specie: ${char.species}</p>
-            <p>Status: ${char.status}</p>
-            <p>Location: ${char.location.name}</p>
+            <p><span>Name:</span> ${char.name}</p>
+            <p><span>Gender:</span> ${char.gender}</p> 
+            <p><span>Species:</span> ${char.species}</p>
+            <p><span>Status:</span> ${char.status}</p>
+            <p><span>Location:</span> ${char.location.name}</p>
           </div>
           </a></div>
           `;

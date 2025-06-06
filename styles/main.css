@@ -88,12 +88,27 @@ header {
 .nav-li a {
   cursor: pointer;
   text-decoration: none;
+  position: relative;
   color: white;
 }
+.nav-li a::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 0;
+  bottom: 0;
+  left: 0;
+  background-color: hsl(8, 85%, 59%);
+  transition: all 0.3s ease;
+}
+
 .nav-li a:hover {
-  text-decoration: underline;
-  color: rgb(142, 142, 142);
+  /* text-decoration: underline; */
+  color: hsl(8, 85%, 59%);
   transition: 0.2s ease-out;
+}
+.nav-li a:hover::after {
+  width: 75%;
 }
 
 footer {
@@ -106,7 +121,12 @@ footer {
   bottom: 100%;
 }
 
-/* ///// characters page */
+/*  characters page */
+.char-h1 {
+  margin-top: 1rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
 .main-con {
   display: flex;
   justify-content: center;
@@ -121,11 +141,11 @@ footer {
   justify-items: center;
   width: 90%;
   border-radius: 7px;
-  border: solid rgb(227, 110, 33, 0.8) 2px;
+  /* border: solid rgb(227, 110, 33, 0.8) 2px; */
   height: auto;
   margin-top: 40px;
   padding: 20px;
-  background-color: rgba(218, 218, 218, 0.8);
+  /* background-color: rgba(245, 245, 245, 0.8); */
 }
 
 .char-card {
@@ -140,9 +160,12 @@ footer {
   border-radius: 7px;
   color: inherit;
   overflow: hidden;
+  transition: all 0.3s ease;
 }
 .char-card:hover {
-  scale: 1.05;
+  scale: 1.1;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgb(227, 110, 33);
 }
 .char-card a {
   height: 100%;
@@ -155,12 +178,18 @@ footer {
   overflow: hidden;
 }
 .char-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
   text-align: center;
-
   padding: 10px;
   color: rgb(83, 83, 83);
-  font-weight: bold;
   flex-grow: 1;
+}
+.char-info span {
+  font-weight: bold;
 }
 .buttons {
   display: flex;
@@ -179,10 +208,8 @@ button {
 
   color: rgb(83, 83, 83);
 }
-.page-num {
-}
 
-/* ///// Charecters Details//// */
+/*  Charecters Details */
 
 .details-con {
   width: 90%;
