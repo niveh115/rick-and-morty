@@ -152,14 +152,19 @@ footer {
 }
 
 .location-card:hover {
-  box-shadow: 0 0 10px var(--neutral-clr-100);
+  box-shadow: 0 0 10px var(--primary-clr-300);
   scale: 1.1;
   transition: all 0.5s ease-in;
 }
 
 .location-card a {
   color: var(--neutral-clr-100);
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 1.17em;
+}
+
+.location-card span {
+  font-weight: 700;
 }
 
 .location-card a:hover {

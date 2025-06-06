@@ -50,8 +50,8 @@ function loadLocations() {
           const link = `location-detail.html?locationId=${location.id}`;
           return `<li class="location-card">
               <p><a href="${link}">${location.name}</a></p>
-              <p>${location.type}</p>
-              <p>${location.dimension}</p>
+              <p><span>Type:</span> ${location.type}</p>
+              <p><span>Dimension:</span> ${location.dimension}</p>
             </li>`;
         })
         .join("");
