@@ -94,12 +94,27 @@ header {
 .nav-li a {
   cursor: pointer;
   text-decoration: none;
+  position: relative;
   color: white;
 }
+.nav-li a::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 0;
+  bottom: 0;
+  left: 0;
+  background-color: hsl(8, 85%, 59%);
+  transition: all 0.3s ease;
+}
+
 .nav-li a:hover {
-  text-decoration: underline;
-  color: rgb(142, 142, 142);
+  /* text-decoration: underline; */
+  color: hsl(8, 85%, 59%);
   transition: 0.2s ease-out;
+}
+.nav-li a:hover::after {
+  width: 75%;
 }
 footer {
   line-height: 60px;
