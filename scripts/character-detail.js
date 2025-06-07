@@ -28,7 +28,7 @@ function loadCharacterDetails(id) {
       const charDetailsCon = document.querySelector(".details-con");
 
       charDetailsCon.innerHTML = ` <div class="char-details-card">
-          <div class="img"><img src="${char.image}" /></div>
+          <div><img class="img-deatails" src="${char.image}" /></div>
           <div class="info">
             <p>Name: ${char.name}</p>
             <p>Gender: ${char.gender}</p>

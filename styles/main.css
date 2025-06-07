@@ -163,14 +163,8 @@ footer {
   transition: all 0.3s ease;
 }
 .char-card:hover {
-<<<<<<< HEAD
-  scale: 1.1;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgb(227, 110, 33);
-=======
   scale: 1.05;
   overflow: hidden;
->>>>>>> 76218d9 (done?)
 }
 .char-card a {
   height: 100%;
@@ -216,12 +210,16 @@ button {
 /*  Charecters Details */
 
 .details-con {
-  width: 90%;
+  display: flex;
+  /* justify-content: center; */
+  width: 60%;
   height: auto;
   border: solid rgb(227, 110, 33) 2px;
   border-radius: 7px;
   padding: 10px;
   margin-top: 30px;
+  background-color: hsla(0, 0%, 83%, 0.7);
+  box-shadow: 0 0 10px black;
 }
 .char-details-card {
   display: flex;
@@ -244,4 +242,8 @@ form {
 
 form label {
   font-weight: 500;
+}
+.img-deatails {
+  border-radius: 7px;
+  border: solid rgb(227, 110, 33) 2px;
 }
