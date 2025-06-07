@@ -163,9 +163,14 @@ footer {
   transition: all 0.3s ease;
 }
 .char-card:hover {
+<<<<<<< HEAD
   scale: 1.1;
   transition: all 0.3s ease;
   box-shadow: 0 0 10px rgb(227, 110, 33);
+=======
+  scale: 1.05;
+  overflow: hidden;
+>>>>>>> 76218d9 (done?)
 }
 .char-card a {
   height: 100%;
@@ -205,7 +210,6 @@ button {
   padding: 6px;
   cursor: pointer;
   margin: 0 3px;
-
   color: rgb(83, 83, 83);
 }
 
