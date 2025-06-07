@@ -78,7 +78,6 @@ loadCharacters();
 // 2. Next page button click
 // 3. Search input with debounce
 // 4. Call loadCharacters() on page load
-let Page = 1;
 const pageNumber = document.querySelector(".page-num");
 const next = document.querySelector(".next");
 const previous = document.querySelector(".previous");
@@ -102,21 +101,24 @@ function updatePaginationButtons() {
   previous.disabled = state.page === 1;
 }
 
-function debounce(fn, delay = 300) {
-  let timeoutId;
-  return (...args) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn.apply(this, args), delay);
-  };
+function debounce(fn, wait) {
+  let timer;
+  function deb(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn(...args);
+    }, wait);
+  }
+  return deb;
 }
 
 const searchInput = document.getElementById("searchBar");
 
 const handleSearch = debounce((event) => {
   state.search = event.target.value;
-  Page = 1;
-  pageNumber.textContent = `Page: ${Page}`;
-  loadCharacters(Page);
+  state.page = 1;
+  pageNumber.textContent = `Page: ${state.page}`;
+  loadCharacters(state.page);
   updatePaginationButtons();
 }, 300);
 

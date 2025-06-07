@@ -186,3 +186,21 @@ footer {
   padding: 0 1rem;
   border-radius: 5px;
 }
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+#searchBar {
+  text-align: center;
+  border: 1px solid rgb(227, 110, 33);
+  padding: 0.25rem 1rem;
+  border-radius: 1rem;
+}
+
+form label {
+  font-weight: 500;
+}

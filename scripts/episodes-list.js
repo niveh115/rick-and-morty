@@ -33,15 +33,25 @@ function updateUI(data) {
  * Loads episode data from the API
  */
 
-const BASE_URL = "https://rickandmortyapi.com"; 
+const BASE_URL = "https://rickandmortyapi.com";
 
-let currentPage =
+state.page =
   parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
 let totalPages = 1;
 
 function loadEpisodes() {
-  fetch(`${BASE_URL}/api/episode?page=${currentPage}`)
-    .then((res) => res.json())
+  let url = `${BASE_URL}/api/episode?page=${state.page}`;
+  if (state.search.trim() !== "") {
+    url += `&name=${encodeURIComponent(state.search.trim())}`;
+  }
+
+  fetch(url)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("No episodes found");
+      }
+      return res.json();
+    })
     .then((data) => {
       const episodesList = document.getElementById("episodesList");
       episodesList.innerHTML = "";
@@ -64,31 +74,58 @@ function loadEpisodes() {
       pagination();
     })
     .catch((err) => {
+      const episodesList = document.getElementById("episodesList");
+      episodesList.innerHTML = `<p class="error">No episodes found. Try another search.</p>`;
       console.error("Error loading episodes:", err);
+      // Reset pagination UI
+      document.getElementById("page-number").textContent = "";
+      document.getElementById("prev-btn").disabled = true;
+      document.getElementById("next-btn").disabled = true;
     });
 }
 
 function pagination() {
-  document.getElementById("page-number").textContent = `Page ${currentPage}`;
-  document.getElementById("prev-btn").disabled = currentPage === 1;
-  document.getElementById("next-btn").disabled = currentPage === totalPages;
+  document.getElementById("page-number").textContent = `Page ${state.page}`;
+  document.getElementById("prev-btn").disabled = state.page === 1;
+  document.getElementById("next-btn").disabled = state.page === totalPages;
 
-  const newUrl = `${window.location.pathname}?page=${currentPage}`;
+  const newUrl = `${window.location.pathname}?page=${state.page}`;
   history.pushState(null, "", newUrl);
 }
 
 document.getElementById("prev-btn").addEventListener("click", () => {
-  if (currentPage > 1) {
-    currentPage--;
+  if (state.page > 1) {
+    state.page--;
     loadEpisodes();
   }
 });
 
 document.getElementById("next-btn").addEventListener("click", () => {
-  if (currentPage < totalPages) {
-    currentPage++;
+  if (state.page < totalPages) {
+    state.page++;
     loadEpisodes();
   }
 });
+
+function debounce(fn, wait) {
+  let timer;
+  function deb(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn(...args);
+    }, wait);
+  }
+  return deb;
+}
+
+const searchInput = document.getElementById("searchBar");
+
+const handleSearch = debounce((event) => {
+  state.search = event.target.value;
+  state.page = 1; // reset to first page when searching
+  loadEpisodes();
+}, 300);
+
+searchInput.addEventListener("input", handleSearch);
 
 loadEpisodes();
