@@ -33,16 +33,17 @@ function updateUI(data) {
  * Loads character data from the API
  */
 function loadCharacters(Page = 1) {
-  // TODO: Implement character loading
-  // 1. Show loading state
-  // 2. Fetch character data using the API module
-  // 3. Update UI with the results
-  // 4. Handle any errors
-  // 5. Hide loading state
-
-  const CHAR_URL = `https://rickandmortyapi.com/api/character?page=${Page}`;
+  let CHAR_URL = `https://rickandmortyapi.com/api/character?page=${Page}`;
+  if (state.search.trim()) {
+    CHAR_URL += `&name=${encodeURIComponent(state.search.trim())}`;
+  }
   fetch(CHAR_URL)
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("No characters found");
+      }
+      return res.json();
+    })
     .then((data) => {
       console.log(data.results);
       const charCon = document.querySelector(".char-con");
@@ -65,7 +66,9 @@ function loadCharacters(Page = 1) {
       charCon.innerHTML = charStr;
     })
     .catch((err) => {
-      console.log("Error you mf", err);
+      const charCon = document.querySelector(".char-con");
+      charCon.innerHTML = `<p class="error">No characters found. Try another name.</p>`;
+      console.error(err.message);
     });
 }
 loadCharacters();
@@ -81,20 +84,40 @@ const next = document.querySelector(".next");
 const previous = document.querySelector(".previous");
 
 next.addEventListener("click", () => {
-  Page++;
-  pageNumber.innerHTML = `Page: ${Page}`;
-  loadCharacters(Page);
+  state.page++;
+  pageNumber.innerHTML = `Page: ${state.page}`;
+  loadCharacters(state.page);
   updatePaginationButtons();
 });
 
 previous.addEventListener("click", () => {
-  Page--;
-  pageNumber.innerHTML = `Page: ${Page}`;
-  loadCharacters(Page);
+  state.page--;
+  pageNumber.innerHTML = `Page: ${state.page}`;
+  loadCharacters(state.page);
   updatePaginationButtons();
 });
 
 function updatePaginationButtons() {
-  next.disabled = Page === 42;
-  previous.disabled = Page === 1;
+  next.disabled = state.page === 42;
+  previous.disabled = state.page === 1;
 }
+
+function debounce(fn, delay = 300) {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+const searchInput = document.getElementById("searchBar");
+
+const handleSearch = debounce((event) => {
+  state.search = event.target.value;
+  Page = 1;
+  pageNumber.textContent = `Page: ${Page}`;
+  loadCharacters(Page);
+  updatePaginationButtons();
+}, 300);
+
+searchInput.addEventListener("input", handleSearch);
