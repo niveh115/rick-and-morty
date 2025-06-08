@@ -32,7 +32,9 @@ function loadCharacterDetails(id) {
           <div class="info">
             <p>Name: ${char.name}</p>
             <p>Gender: ${char.gender}</p>
-            <p>Location: ${char.location.name}</p>
+            <p>Location: <a href="location-detail.html?locationId=${char.location.url
+              .split("/")
+              .pop()}">${char.location.name}</a></p>
             <p>Specie: ${char.species}</p>
             <p>Status: ${char.status}</p>
             <p>Origin: ${char.origin.name}</p>
@@ -50,7 +52,7 @@ function loadCharacterDetails(id) {
     })
 
     .catch((err) => {
-      console.log("Error you mf", err);
+      console.log("Error no such character", err);
     });
 }
 loadCharacterDetails();
