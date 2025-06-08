@@ -33,7 +33,7 @@ function updateUI(data) {
  * Loads character data from the API
  */
 function loadCharacters(Page = 1) {
-  let CHAR_URL = `https://rickandmortyapi.com/api/character?page=${Page}`;
+  let CHAR_URL = `https://rickandmortyapi.com/api/character?page=${state.page}`;
   if (state.search.trim()) {
     CHAR_URL += `&name=${encodeURIComponent(state.search.trim())}`;
   }
