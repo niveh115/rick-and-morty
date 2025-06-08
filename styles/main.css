@@ -45,6 +45,7 @@ header {
   position: fixed;
   overflow: auto;
   width: 100%;
+  z-index: 1000;
 }
 .nav-con {
   display: flex;
@@ -53,6 +54,7 @@ header {
   align-items: center;
   background-color: hsl(31, 96%, 61%, 80%);
   color: white;
+  /* z-index: 1000; */
 }
 
 .nav-logo {
